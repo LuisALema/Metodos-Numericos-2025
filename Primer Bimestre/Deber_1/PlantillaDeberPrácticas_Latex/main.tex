@@ -1,0 +1,93 @@
+\documentclass[12pt]{article}
+\usepackage[spanish]{babel}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage{multicol}
+\usepackage{cite}
+
+\definecolor{highlight}{RGB}{255, 255, 0}
+
+\titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\large\bfseries}{\thesubsection}{1em}{}
+
+\begin{document}
+
+% Logos
+\begin{minipage}{0.45\textwidth}
+    \includegraphics[width=0.4\textwidth]{inFiles/Figures/epnLogo.jpg}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+    \raggedleft
+    \includegraphics[width=0.4\textwidth]{inFiles/Figures/FIS_logo.jpg}
+\end{minipage}
+
+\vspace{0.5cm}
+
+% Títulos principales
+\begin{center}
+    \textbf{ESCUELA POLITÉCNICA NACIONAL}\\[0.2cm]
+    \textbf{FACULTAD DE INGENIERÍA DE SISTEMAS}\\[0.2cm]
+    \textbf{INGENIERÍA \colorbox{highlight}{\textbf{carrera}}}
+\end{center}
+
+\vspace{0.5cm}
+\hrule
+\vspace{0.5cm}
+
+% Datos principales
+\noindent\textbf{PERÍODO ACADÉMICO:} 2025-A\\[0.2cm]
+\noindent\textbf{ASIGNATURA:} ICCD412 Métodos Numéricos \hfill \textbf{GRUPO:} GR2\\[0.2cm]
+\noindent\textbf{TIPO DE INSTRUMENTO:} \colorbox{highlight}{Instrumento que corresponde}\\[0.2cm]
+\noindent\textbf{FECHA DE ENTREGA LÍMITE:} \colorbox{highlight}{04/05/2025}\\[0.2cm]
+\noindent\textbf{ALUMNO:} \colorbox{highlight}{Apellido Nombre}
+
+\vspace{0.5cm}
+\hrule
+\vspace{1cm}
+
+
+% Secciones
+\section*{TEMA}
+\colorbox{highlight}{cambiar nombre de tema}
+
+\vspace{0.5cm}
+
+\section*{OBJETIVOS}
+\begin{itemize}
+    \item \colorbox{highlight}{Al menos uno por tema}
+\end{itemize}
+
+\vspace{0.5cm}
+
+\section*{MARCO TEÓRICO}
+\colorbox{highlight}{De ser solicitado} \cite{vargas2013exploiting}
+
+\vspace{0.5cm}
+
+\section*{DESARROLLO}
+
+\vspace{0.5cm}
+
+\section*{CONCLUSIONES}
+\colorbox{highlight}{solo para prácticas e informes}
+
+\vspace{0.5cm}
+
+\section*{RECOMENDACIONES}
+\colorbox{highlight}{solo para prácticas e informes}
+
+\vspace{0.5cm}
+
+
+\renewcommand{\refname}{\MakeUppercase{REFERENCIAS}}
+\bibliographystyle{IEEEtran}
+\bibliography{inFiles/References/references.bib}
+\colorbox{highlight}{en formato IEEE}
+
+
+\end{document}
