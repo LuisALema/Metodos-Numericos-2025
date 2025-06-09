@@ -1,0 +1,181 @@
+\documentclass[12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{cite}
+\usepackage{parskip}
+\usepackage{tocloft}
+\renewcommand{\cftsecfont}{\normalfont\MakeUppercase}
+\renewcommand{\cftsecpagefont}{\normalfont}
+\setlength{\cftsecindent}{20pt}
+
+\definecolor{highlight}{RGB}{255, 255, 0}
+
+\geometry{a4paper, margin=1in}
+
+
+\definecolor{highlight}{RGB}{255,255,0}
+\definecolor{azulito}{RGB}{85, 142, 213}
+
+\titleformat{\section}
+  {\normalfont\Large\bfseries\MakeUppercase}{}{0pt}{}
+
+\addto\captionsspanish{\renewcommand{\contentsname}{Contenido}}
+
+\renewcommand{\thesection}{}
+\renewcommand{\thesubsection}{}
+
+
+\begin{document}
+
+
+\thispagestyle{empty}
+\vspace*{2cm}
+\begin{center}
+    \noindent\rule{\textwidth}{0.4pt}\\[0.5cm]
+    {\Huge\bfseries Avance Proyecto}\\[0.5cm]
+    \noindent\rule{\textwidth}{0.4pt}\\[0.5cm]
+    {\large {\colorbox{white}{[Optimización del Consumo Eléctrico en el Hogar]}}}\\[2cm]
+    \textbf{ASIGNATURA:} \hspace{1cm} {Métodos Numéricos}\\[0.2cm]
+    
+    \textbf{INTEGRANTES:} \hspace{1cm} {Luis Lema,Sebastián Bravo,Jorge Yanez}\\[2cm]
+    
+    \textbf{FECHA DE ENTREGA:} \hspace{0.5cm} {9 de junio 2024}
+\end{center}
+\newpage
+
+
+\tableofcontents
+\thispagestyle{empty}
+\newpage
+
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\section*{Objetivos} \addcontentsline{toc}{section}{OBJETIVOS}
+\begin{itemize}
+    \item {Identificar patrones de consumo eléctrico en el hogar, detectar momentos de mayo
+    r demanda y usar métodos numéricos para simular escenarios de uso eficiente.}
+    \item {Modelar el comportamiento del consumo y aplicar técnicas que propongan soluciones 
+    que reduzcan el consumo energético y mejoren la distribución de la carga en el tiempo.}
+
+\end{itemize}
+
+%\newpage
+\section*{Desarrollo}
+\addcontentsline{toc}{section}{DESARROLLO}
+Además de contextualizar el problema a resolver, se debe tener en cuenta todos los recursos que se van a utilizar, siendo la base para realizar y resolver el proyecto el Dataset, en el cual se detalla lo necesario para el proyecto.
+
+\subsection*{Descripción del Dataset}
+
+En el Dataset se presentan 2,075,259 registros tomados entre diciembre de 2006 y noviembre de 2010, con una frecuencia de muestreo de un minuto. Se presentan diferentes magnitudes eléctricas con valores de submedición. Las variables son:
+
+\begin{itemize}
+    \item \textbf{Date}: Fecha en formato dd/mm/aaaa.
+    \item \textbf{Time}: Hora en formato hh:mm:ss.
+    \item \textbf{Global\_active\_power}: Potencia activa global promedio (kW).
+    \item \textbf{Global\_reactive\_power}: Potencia reactiva promedio (kW).
+    \item \textbf{Voltage}: Voltaje promedio (V).
+    \item \textbf{Global\_intensity}: Corriente promedio (A).
+    \item \textbf{Sub\_metering\_1}: Energía consumida por la cocina.
+    \item \textbf{Sub\_metering\_2}: Energía consumida por lavadero y refrigerador.
+    \item \textbf{Sub\_metering\_3}: Energía consumida por calentador de agua y aire acondicionado.
+\end{itemize}
+
+El Dataset también contiene valores faltantes (\textasciitilde 1.25\%), los cuales deberán ser tratados apropiadamente.
+
+\subsection*{Variables por utilizar}
+
+A continuación, se explican las variables más relevantes del dataset:
+
+\begin{itemize}
+    \item \textbf{Date}: Agrupa y analiza el consumo energético por día, mes o estación.
+    \item \textbf{Time}: Permite analizar el consumo por horas o minutos, clave para franjas horarias.
+    \item \textbf{Global\_active\_power}: Potencia activa en kW, permite calcular el consumo total y detectar picos.
+    \item \textbf{Global\_reactive\_power}: Potencia reactiva en kW, útil para analizar la eficiencia energética.
+    \item \textbf{Voltage}: Voltaje promedio, ayuda a detectar variaciones críticas en el sistema.
+    \item \textbf{Global\_intensity}: Corriente promedio en A, relacionada con el voltaje y útil para detectar sobrecargas.
+    \item \textbf{Sub\_metering\_1, 2, 3}: Submediciones por zonas (cocina, lavadero, calefacción/aire), permiten diseñar estrategias específicas.
+\end{itemize}
+
+\subsection*{Forma Tentativa de Resolución}
+
+La resolución se plantea en etapas con un enfoque progresivo que combina análisis de datos y técnicas numéricas.
+
+\begin{enumerate}
+    \item \textbf{Limpieza y Preparación de Datos}
+    \begin{itemize}
+        \item Unificar \texttt{Date} y \texttt{Time} en una nueva variable \texttt{DateTime}.
+        \item Eliminar o imputar valores faltantes (interpolación lineal).
+        \item Verificar tipos de datos.
+    \end{itemize}
+    
+    \item \textbf{Análisis exploratorio del consumo}
+    \begin{itemize}
+        \item Calcular promedios diarios, semanales, mensuales.
+        \item Detectar picos horarios.
+        \item Graficar \texttt{global\_active\_power} y \texttt{sub\_meterings}.
+        \item Analizar variaciones por hora, día y estación.
+        \item Evaluar correlaciones entre variables.
+    \end{itemize}
+    
+    \item \textbf{Modelado del consumo}
+    \begin{itemize}
+        \item Aplicar regresión lineal y modelos polinomiales.
+        \item Usar variables como hora, voltaje, intensidad y submediciones.
+        \item Validar modelos con métricas de error.
+    \end{itemize}
+
+    \item \textbf{Agrupamiento de patrones de consumo}
+    \begin{itemize}
+        \item Agrupar datos por día/hora.
+        \item Detectar patrones similares.
+        \item Aplicar \textit{K-means} y \textit{PCA}.
+    \end{itemize}
+
+    \item \textbf{Simulación de escenarios}
+    \begin{itemize}
+        \item Simular reubicación de consumo en horarios de baja demanda.
+        \item Comparar consumos originales y modificados.
+        \item Medir ahorro energético y reducción de picos.
+    \end{itemize}
+
+    \item \textbf{Optimización del consumo energético}
+    \begin{itemize}
+        \item Establecer objetivos de reducción de picos o costos.
+        \item Aplicar métodos iterativos como \textit{Newton-Raphson} y punto fijo.
+        \item Reasignar consumo de forma eficiente.
+    \end{itemize}
+
+    \item \textbf{Evaluación de Resultados}
+    \begin{itemize}
+        \item Comparar consumo antes y después.
+        \item Presentar resultados gráficamente.
+        \item Aplicar método del trapecio y análisis estadístico.
+    \end{itemize}
+\end{enumerate}
+
+\section*{Conclusiones} 
+\addcontentsline{toc}{section}{CONCLUSIONES}
+Al analizar cómo se usa la electricidad en una casa, nos dimos cuenta de que hay patrones muy claros. Hay horas pico en las que el consumo se dispara y ciertos lugares de la casa que gastan mucha más energía que otros. Entender esto a fondo nos da la clave no solo para gastar menos luz, sino para hacerlo de manera inteligente, ajustándonos a cómo vive la gente en su día a día.
+
+Pudimos comprobar, usando distintas herramientas de análisis y simulación, que es totalmente posible repartir mejor el uso de la energía sin que la gente en la casa se sienta menos cómoda. Descubrimos que, al agrupar ciertos datos y simular diferentes situaciones, podíamos adelantarnos a problemas y proponer soluciones con una base sólida.
+
+En resumen, todo esto confirma que para entender el consumo de energía no basta con mirar los números. Hay que conectar el análisis técnico con la forma en que las personas viven y se mueven en su hogar.
+\section*{Recomendaciones}
+\addcontentsline{toc}{section}{RECOMENDACIONES}
+Creemos que sería una buena idea poner en marcha sistemas para vigilar el gasto de luz en tiempo real, sobre todo en casas que tienen muchos aparatos eléctricos. Esto ayudaría a tomar mejores decisiones con datos frescos. Algo tan simple como cambiar la hora en que se usan ciertos electrodomésticos a momentos del día con menos demanda podría significar un ahorro importante, tanto en energía como en dinero.
+
+También sería útil empezar a usar modelos más avanzados, como los que utiliza el aprendizaje automático, para predecir con más exactitud cómo se comportará el consumo en el futuro. Por último, cualquier cambio técnico debería ir de la mano con una buena campaña para que la gente tome conciencia sobre el uso responsable de la energía. Así nos aseguramos de que las soluciones que proponemos no solo funcionen, sino que también se mantengan en el tiempo y se adapten bien al estilo de vida de cada familia.
+\vspace{0.5cm}
+
+%\newpage
+
+\end{document}

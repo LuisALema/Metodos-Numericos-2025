@@ -1,0 +1,5 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {section}{OBJETIVOS}{1}{}%
+\contentsline {section}{DESARROLLO}{1}{}%
+\contentsline {section}{CONCLUSIONES}{3}{}%
+\contentsline {section}{RECOMENDACIONES}{3}{}%
